@@ -1,0 +1,75 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<div class="row">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Monthly Expenses</h5>
+        <p class="card-text">
+          Monthly expenses refer to the regular and recurring costs that an
+          individual or household incurs on a monthly basis. These expenses can
+          include items such as rent, utilities, food, transportation, and
+          entertainment.
+        </p>
+        <p class="fw-medium">
+          Total Expense for the Month:-
+          <i class="bi bi-currency-dollar"></i>{{totalexpense}}
+        </p>
+        <a href="{% url 'viewexpense' %}" class="btn btn-primary"
+          >View Detailed</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Monthly Income</h5>
+        <p class="card-text">
+          Monthly income refers to the amount of money an individual or
+          household receives on a regular basis, typically in the form of a
+          paycheck or other source of regular income. This income can be used to
+          cover monthly expenses and save for future goals.
+        </p>
+        <p class="fw-medium">
+          Total Income for the Month:-
+          <i class="bi bi-currency-dollar"></i>{{totalincome}}
+        </p>
+        <a href="{% url 'viewexpense' %}" class="btn btn-primary"
+          >View Detailed</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Investment</h5>
+        <p class="card-text">
+          Investment refers to the act of allocating money or other resources
+          with the goal of generating income or profit over time. There are many
+          different types of investments, including stocks, bonds, real estate,
+          and mutual funds, among others.
+        </p>
+        <p class="fw-medium">
+          Total Investment:-
+          <i class="bi bi-currency-dollar"></i>{{totalcashinvested}}
+        </p>
+        <a href="{% url 'viewmoney' %}" class="btn btn-primary"
+          >View Detailed</a
+        >
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0 mt-3">
+      <span class="card-text badge bg-warning text-body-secondary fs-5"
+        >Money left to spend or save:- {{moneyleft}}</span
+      >
+    </div>
+  </div>
+
+  <br />
+  {% endblock %}
+</div>

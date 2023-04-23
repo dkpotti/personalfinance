@@ -1,0 +1,56 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<table
+  class="table table-striped-columns table-info table-hover table-bordered"
+>
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Cash Name</th>
+      <th scope="col">Cash Type</th>
+      <th scope="col">Cash Amount</th>
+      <th scope="col">Cash Rate</th>
+      <th scope="col">Cash Start Date</th>
+      <th scope="col">Cash Maturity Date</th>
+      <th scope="col">Percentage Invested</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for eachCashItem in allmoneyitems %}
+    <tr>
+      <th scope="row">{{ eachCashItem.cashName }}</th>
+      <td>{{ eachCashItem.cashType }}</td>
+      <td>$ {{ eachCashItem.cashAmount }}</td>
+      <td>{{ eachCashItem.cashRate }} %</td>
+      <td>{{ eachCashItem.cashStartDate }}</td>
+      <td>{{ eachCashItem.cashMaturityDate }}</td>
+      <td>{{ eachCashItem.percentageInvolved|floatformat:2 }} %</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<br />
+<div class="card bg-secondary-subtle">
+  <div class="card-body">
+    Total Cash Invested (USD) :-<i class="bi bi-currency-dollar"></i>
+    {{totalCash}}
+    <br />
+    Total Cash Invested (INR) :-<i class="bi bi-currency-rupee"></i>
+    {{inr_amount|floatformat:2}}
+    <br />
+    Current Rate
+    <i class="bi bi-caret-right-fill"></i> {{currentRate|floatformat:2}}
+    <br />
+  </div>
+</div>
+<div class="card mt-3 bg-secondary-subtle" style="width: 25rem">
+  <ul class="list-group list-group-flush">
+    {% for eachCashType in totalAmounts %}
+    <li class="list-group-item">
+      Total {{eachCashType.cashType}}:-<i class="bi bi-currency-dollar"></i
+      >{{eachCashType.totalCashAmount}}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<br />
+{% endblock %}

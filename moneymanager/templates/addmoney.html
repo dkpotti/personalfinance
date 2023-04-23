@@ -1,0 +1,68 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<form class="row g-3" action="{% url 'addmoney' %}" method="POST">
+  {% csrf_token %}
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Cash Name</label>
+    <input type="text" class="form-control" id="inputEmail4" name="cashName" />
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Cash Type</label>
+    {% comment %}
+    <input type="text" class="form-control" id="inputEmail4" name="cashType" />
+    {% endcomment %}
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      name="cashType"
+    >
+      {% for eachCashType in cashdata %}
+      <option value=" {{ eachCashType }}">{{ eachCashType }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Cah Amount</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="Enter Amount"
+      name="cashAmount"
+    />
+  </div>
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">Cash Rate</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress2"
+      placeholder="Enter the Rate"
+      name="cashRate"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Start Date</label>
+    <input
+      type="date"
+      class="form-control"
+      id="inputCity"
+      name="cashStartDate"
+    />
+  </div>
+  <div class="col-md-4">
+    <label for="inputState" class="form-label">Maturity Date</label>
+    <input
+      type="date"
+      class="form-control"
+      id="maturitydate"
+      name="cashMaturityDate"
+    />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Enter Cash</button>
+  </div>
+</form>
+
+<br />
+{% endblock %}

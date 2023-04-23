@@ -1,0 +1,141 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<div class="row">
+  <div class="col-md-6">
+    <p class="fs-4 fw-semibold">
+      Regular Monthly Expense
+      <i class="bi bi-caret-right-fill"></i
+      >{{totalRegularExpense|floatformat:2}}
+    </p>
+    <table
+      class="table table-striped-columns table-info table-hover table-bordered"
+    >
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Expense Name</th>
+          <th scope="col">Expense Amount</th>
+          <th scope="col">Expense Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for eachExpenseItem in allregularmonthlyexpense %}
+        <tr>
+          <th scope="row">{{ eachExpenseItem.expenseName }}</th>
+          <td>$ {{ eachExpenseItem.expenseAmount|floatformat:2 }}</td>
+          <td>{{ eachExpenseItem.expenseDate }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <p class="fs-4 fw-semibold">Monthly Income</p>
+    <table
+      class="table table-striped-columns table-info table-hover table-bordered"
+    >
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Income Name</th>
+          <th scope="col">Income Amount</th>
+          <th scope="col">Income Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for eachExpenseItem in allregularmonthlyincome %}
+        <tr>
+          <th scope="row">{{ eachExpenseItem.incomeName }}</th>
+          <td>$ {{ eachExpenseItem.incomeAmount|floatformat:2 }}</td>
+          <td>{{ eachExpenseItem.incomeDate }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <p class="fs-4 fw-semibold">Unexpected Monthly Expenses</p>
+    <table
+      class="table table-striped-columns table-info table-hover table-bordered"
+    >
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Expense Name</th>
+          <th scope="col">Expense Amount</th>
+          <th scope="col">Expense Date</th>
+          <th scope="col">Expense Owed To</th>
+          <th scope="col">Expense Owed To</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for eachExpenseItem in allunexpectedmonthlyexpense %}
+        <tr>
+          <th scope="row">{{ eachExpenseItem.expenseName }}</th>
+          <td>$ {{ eachExpenseItem.expenseAmount|floatformat:2 }}</td>
+          <td>{{ eachExpenseItem.expenseDate }}</td>
+          <td>{{ eachExpenseItem.expenseOwesTo }}</td>
+          <td>
+            <a href="{% url 'removeunexpectedexpense' eachExpenseItem.id %}"
+              >Remove Expense</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <p class="fs-4 fw-semibold">Monthly Savings</p>
+    <table
+      class="table table-striped-columns table-info table-hover table-bordered"
+    >
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Savings Name</th>
+          <th scope="col">Savings Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for eachSavingItem in allregularmonthlysavings %}
+        <tr>
+          <th scope="row">{{ eachSavingItem.savingsName }}</th>
+          <td>$ {{ eachSavingItem.savingsAmount|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="card bg-secondary-subtle">
+    <p class="card-title fs-4 fw-medium">Total Monthly Summary</p>
+    <div class="card-body fs-5">
+      <ul class="list-group list-group-item-secondary">
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center fw-medium"
+        >
+          How much you spent of your salary
+          <span class="badge bg-primary rounded-pill"
+            >{{expensePercentage|floatformat:2}}%</span
+          >
+        </li>
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center fw-medium"
+        >
+          How much of salary you save
+          <span class="badge bg-primary rounded-pill"
+            >{{totalSavings|floatformat:2}}%</span
+          >
+        </li>
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center fw-medium"
+        >
+          How much of the salary left
+          <span class="badge bg-primary rounded-pill"
+            >{{leftOverPercentage|floatformat:2}}%</span
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<br />
+<br />
+{% endblock %}

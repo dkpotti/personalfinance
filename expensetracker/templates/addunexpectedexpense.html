@@ -1,0 +1,43 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<form class="row g-3" action="{% url 'addunexpectedexpense' %}" method="POST">
+  {% csrf_token %}
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Expense Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputEmail4"
+      name="expenseName"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputAddress" class="form-label">Expense Amount</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="Enter Amount"
+      name="expenseAmount"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Expense Date</label>
+    <input type="date" class="form-control" id="inputCity" name="expenseDate" />
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Expense Owes To</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputCity"
+      name="expenseOwesTo"
+    />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Enter Expense</button>
+  </div>
+</form>
+
+<br />
+{% endblock %}
