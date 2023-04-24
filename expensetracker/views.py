@@ -21,6 +21,11 @@ def viewexpense(request):
         Sum('incomeAmount'))['incomeAmount__sum']
     totalSavings = regularmonthlysavings.objects.all().aggregate(
         Sum('savingsAmount'))['savingsAmount__sum']
+    totalUnexpectedExpense = unexpectedmonthlyexpense.objects.all().exclude(
+        expenseStatus=False).aggregate(
+        Sum('expenseAmount'))['expenseAmount__sum']
+
+    totalUnexpectedExpense = 0.00 if totalUnexpectedExpense is None else totalUnexpectedExpense
 
     totalSavings = (totalSavings/totalMonthlyIncome) * 100
     expensePercentage = (totalRegularExpense/totalMonthlyIncome) * 100
@@ -31,7 +36,7 @@ def viewexpense(request):
                                                 allunexpectedmonthlyexpense, "allregularmonthlyincome": allregularmonthlyincome,
                                                 "totalRegularExpense": totalRegularExpense, "totalMonthlyIncome": totalMonthlyIncome,
                                                 "expensePercentage": expensePercentage, "totalSavings": totalSavings, "allregularmonthlysavings": allregularmonthlysavings,
-                                                "leftOverPercentage": leftOverPercentage})
+                                                "leftOverPercentage": leftOverPercentage, "totalUnexpectedExpense": totalUnexpectedExpense})
 
 
 def addregularexpense(request):
