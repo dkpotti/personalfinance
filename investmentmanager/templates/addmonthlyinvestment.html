@@ -1,0 +1,40 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<form class="row g-3" action="{% url 'addmonthlyinvestment' %}" method="POST">
+  {% csrf_token %}
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Income Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputEmail4"
+      name="investmentName"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputAddress" class="form-label">Income Amount</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="Enter Amount"
+      name="investmentAmount"
+      value=""
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Income Date</label>
+    <input
+      type="date"
+      class="form-control"
+      id="inputCity"
+      name="investmentDate"
+    />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Enter Income</button>
+  </div>
+</form>
+
+<br />
+{% endblock %}

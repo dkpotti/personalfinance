@@ -1,0 +1,33 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<div class="row">
+  <div class="col-md-6">
+    <p class="fs-4 fw-semibold">
+      Regular Monthly Investment
+      <i class="bi bi-caret-right-fill"></i
+      >{{totalMonthlyInvestment|floatformat:2}}
+    </p>
+    <table
+      class="table table-striped-columns table-info table-hover table-bordered"
+    >
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Expense Name</th>
+          <th scope="col">Expense Amount</th>
+          <th scope="col">Expense Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for eachInvestmentItem in allmonthlyinvestments %}
+        <tr>
+          <th scope="row">{{ eachInvestmentItem.investmentName }}</th>
+          <td>$ {{ eachInvestmentItem.investmentAmount|floatformat:2 }}</td>
+          <td>{{ eachInvestmentItem.investmentDate }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<br />
+{% endblock %}

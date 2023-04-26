@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "moneymanager",
     "expensetracker",
+    "investmentmanager",
 ]
 
 MIDDLEWARE = [
