@@ -10,4 +10,6 @@ urlpatterns = [
     path("addregularincome/", views.addregularincome, name="addregularincome"),
     path("delete/<item_id>", views.removeunexpectedexpense,
          name="removeunexpectedexpense"),
+    path("editmonthlyexpense/<item_id>", views.editmonthlyexpense,
+         name="editmonthlyexpense"),
 ]

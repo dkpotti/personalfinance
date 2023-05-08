@@ -1,6 +1,10 @@
 {% extends 'website-master.html' %} {% block content %}
 <br />
-<form class="row g-3" action="{% url 'addmonthlyinvestment' %}" method="POST">
+<form
+  class="row g-3"
+  action="{% url 'editmonthlyinvestment' modified_object.id %}"
+  method="POST"
+>
   {% csrf_token %}
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Income Name</label>
@@ -9,6 +13,7 @@
       class="form-control"
       id="inputEmail4"
       name="investmentName"
+      value="{{modified_object.investmentName}}"
     />
   </div>
   <div class="col-md-6">
@@ -19,27 +24,18 @@
       id="inputAddress"
       placeholder="Enter Amount"
       name="investmentAmount"
-      value=""
+      value="{{modified_object.investmentAmount}}"
     />
   </div>
   <div class="col-md-6">
-    <label for="inputAddress" class="form-label">Investment Currency</label>
+    <label for="inputAddress" class="form-label">Income Currency</label>
     <input
       type="text"
       class="form-control"
       id="inputAddress"
       placeholder="Enter Currency in three letter format"
       name="investmentCurrency"
-    />
-  </div>
-  <div class="col-md-6">
-    <label for="inputAddress" class="form-label">Investment Converted</label>
-    <input
-      type="text"
-      class="form-control"
-      id="inputAddress"
-      placeholder="Enter Currency in three letter format"
-      name="investmentConverted"
+      value="{{modified_object.investmentCurrency}}"
     />
   </div>
   <div class="col-md-6">
@@ -53,6 +49,11 @@
   </div>
   <div class="col-12">
     <button type="submit" class="btn btn-primary">Enter Income</button>
+  </div>
+  <div class="col-12">
+    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-outline-dark"
+      ><i class="bi bi-box-arrow-in-left"></i> Back</a
+    >
   </div>
 </form>
 

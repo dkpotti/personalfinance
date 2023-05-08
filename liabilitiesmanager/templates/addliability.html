@@ -1,0 +1,49 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<form class="row g-3" action="{% url 'addliability' %}" method="POST">
+  {% csrf_token %}
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Liability Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputEmail4"
+      name="liabilityName"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputAddress" class="form-label">Liability Amount</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="Enter Amount"
+      name="liabilityAmount"
+      value=""
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputAddress" class="form-label">Liability To</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="Enter Name to whom you have to pay"
+      name="liabilityTo"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Liability Planned End Date</label>
+    <input
+      type="date"
+      class="form-control"
+      id="inputCity"
+      name="liabilityDate"
+    />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Enter Liability</button>
+  </div>
+</form>
+<br />
+{% endblock %}

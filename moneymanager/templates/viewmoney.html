@@ -17,7 +17,11 @@
   <tbody>
     {% for eachCashItem in allmoneyitems %}
     <tr>
-      <th scope="row">{{ eachCashItem.cashName }}</th>
+      <th scope="row">
+        <a class="link-secondary" href="{% url 'editmoney' eachCashItem.id %}"
+          >{{ eachCashItem.cashName }}</a
+        >
+      </th>
       <td>{{ eachCashItem.cashType }}</td>
       <td>$ {{ eachCashItem.cashAmount }}</td>
       <td>{{ eachCashItem.cashRate }} %</td>

@@ -1,0 +1,80 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<form
+  class="row g-3"
+  action="{% url 'editmoney' editobject.id %}"
+  method="POST"
+>
+  {% csrf_token %}
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Cash Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputEmail4"
+      name="cashName"
+      value="{{editobject.cashName}}"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Cash Type</label>
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      name="cashType"
+    >
+      {% for eachCashType in cashdata %} {% if eachCashType == editobject.cashType %}
+      <option selected value=" {{ eachCashType }}">{{ eachCashType }}</option>
+      {% else %}
+      <option value=" {{ eachCashType }}">{{ eachCashType }}</option>
+      {% endif %} {% endfor %}
+    </select>
+  </div>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Cah Amount</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="Enter Amount"
+      name="cashAmount"
+      value="{{editobject.cashAmount}}"
+    />
+  </div>
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">Cash Rate</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress2"
+      placeholder="Enter the Rate"
+      name="cashRate"
+      value="{{editobject.cashRate}}"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Start Date</label>
+    <input
+      type="date"
+      class="form-control"
+      id="inputCity"
+      name="cashStartDate"
+      value="{{editobject.cashStartDate}}"
+    />
+  </div>
+  <div class="col-md-4">
+    <label for="inputState" class="form-label">Maturity Date</label>
+    <input
+      type="date"
+      class="form-control"
+      id="maturitydate"
+      name="cashMaturityDate"
+      value="{{editobject.cashMaturityDate}}"
+    />
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Enter Cash</button>
+  </div>
+</form>
+<br />
+{% endblock %}

@@ -1,10 +1,10 @@
 {% extends 'website-master.html' %} {% block content %}
 <br />
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <p class="fs-4 fw-semibold">
       Regular Monthly Investment
-      <i class="bi bi-caret-right-fill"></i
+      <i class="bi bi-caret-right-fill text-info mb-2"></i
       >{{totalMonthlyInvestment|floatformat:2}}
     </p>
     <table
@@ -12,17 +12,27 @@
     >
       <thead class="table-dark">
         <tr>
-          <th scope="col">Expense Name</th>
-          <th scope="col">Expense Amount</th>
-          <th scope="col">Expense Date</th>
+          <th scope="col">Investment Name</th>
+          <th scope="col">Investment Amount</th>
+          <th scope="col">Investment Date</th>
+          <th scope="col">Investment Currency Date</th>
+          <th scope="col">Investment in USD</th>
         </tr>
       </thead>
       <tbody>
         {% for eachInvestmentItem in allmonthlyinvestments %}
         <tr>
-          <th scope="row">{{ eachInvestmentItem.investmentName }}</th>
-          <td>$ {{ eachInvestmentItem.investmentAmount|floatformat:2 }}</td>
+          <th scope="row">
+            <a
+              class="link-secondary"
+              href="{% url 'editmonthlyinvestment' eachInvestmentItem.id %}"
+              >{{ eachInvestmentItem.investmentName }}</a
+            >
+          </th>
+          <td>{{ eachInvestmentItem.investmentAmount|floatformat:2 }}</td>
           <td>{{ eachInvestmentItem.investmentDate }}</td>
+          <td>{{ eachInvestmentItem.investmentCurrency }}</td>
+          <td>${{ eachInvestmentItem.investmentConverted }}</td>
         </tr>
         {% endfor %}
       </tbody>

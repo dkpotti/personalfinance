@@ -1,0 +1,47 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<div class="row">
+  <div class="col-md-12">
+    <p class="fs-4 fw-semibold">
+      Existing Liabilities
+      <i class="bi bi-caret-right-fill text-info mb-2"></i
+      >{{totalliabilitiesamount|floatformat:2}}
+    </p>
+    <table
+      class="table table-striped-columns table-info table-hover table-bordered"
+    >
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Liability Name</th>
+          <th scope="col">Liability Amount</th>
+          <th scope="col">Liability Paid To</th>
+          <th scope="col">Investment Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for eachLiability in allliabilities %} 
+        {% if eachLiability.liabilityStatus %}
+        <tr>
+          {% else %}
+        <tr class="text-decoration-line-through">
+        
+          {% endif %}
+
+          <th scope="row">
+            <a
+              class="link-secondary"
+              href="{% url 'editliability' eachLiability.id %}"
+              >{{ eachLiability.liabilityName }}</a
+            >
+          </th>
+          <td>${{ eachLiability.liabilityAmount|floatformat:2 }}</td>
+          <td>{{ eachLiability.liabilityTo }}</td>
+          <td>{{ eachLiability.liabilityDate }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<br />
+{% endblock %}

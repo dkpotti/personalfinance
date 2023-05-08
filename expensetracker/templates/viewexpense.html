@@ -4,8 +4,11 @@
   <div class="col-md-6">
     <p class="fs-4 fw-semibold">
       Regular Monthly Expense
-      <i class="bi bi-caret-right-fill"></i
-      >{{totalRegularExpense|floatformat:2}}
+      <i
+        class="bi bi-caret-right-fill"
+        style="font-size: 1.5rem; color: #002a71"
+      ></i>
+      {{totalRegularExpense|floatformat:2}}
     </p>
     <table
       class="table table-striped-columns table-info table-hover table-bordered"
@@ -20,7 +23,13 @@
       <tbody>
         {% for eachExpenseItem in allregularmonthlyexpense %}
         <tr>
-          <th scope="row">{{ eachExpenseItem.expenseName }}</th>
+          <th scope="row">
+            <a
+              class="link-secondary"
+              href="{% url 'editmonthlyexpense' eachExpenseItem.id %}"
+              >{{ eachExpenseItem.expenseName }}</a
+            >
+          </th>
           <td>$ {{ eachExpenseItem.expenseAmount|floatformat:2 }}</td>
           <td>{{ eachExpenseItem.expenseDate }}</td>
         </tr>
@@ -31,7 +40,11 @@
   <div class="col-md-6">
     <p class="fs-4 fw-semibold">
       Monthly Income
-      <i class="bi bi-caret-right-fill"></i>{{totalMonthlyIncome}}
+      <i
+        class="bi bi-caret-right-fill"
+        style="font-size: 1.5rem; color: #002a71"
+      ></i
+      >{{totalMonthlyIncome}}
     </p>
     <table
       class="table table-striped-columns table-info table-hover table-bordered"
@@ -57,7 +70,11 @@
   <div class="col-md-6">
     <p class="fs-4 fw-semibold">
       Unexpected Monthly Expenses
-      <i class="bi bi-caret-right-fill"></i>{{totalUnexpectedExpense}}
+      <i
+        class="bi bi-caret-right-fill"
+        style="font-size: 1.5rem; color: #002a71"
+      ></i
+      >{{totalUnexpectedExpense}}
     </p>
     <table
       class="table table-striped-columns table-info table-hover table-bordered"
@@ -72,8 +89,12 @@
         </tr>
       </thead>
       <tbody>
-        {% for eachExpenseItem in allunexpectedmonthlyexpense %}
+        {% for eachExpenseItem in allunexpectedmonthlyexpense %} 
+        {% if eachExpenseItem.expenseStatus %}
         <tr>
+          {% else %}
+        <tr class="text-decoration-line-through">
+          {% endif %}
           <th scope="row">{{ eachExpenseItem.expenseName }}</th>
           <td>$ {{ eachExpenseItem.expenseAmount|floatformat:2 }}</td>
           <td>{{ eachExpenseItem.expenseDate }}</td>
@@ -89,7 +110,14 @@
     </table>
   </div>
   <div class="col-md-6">
-    <p class="fs-4 fw-semibold">Monthly Savings</p>
+    <p class="fs-4 fw-semibold">
+      Monthly Savings
+      <i
+        class="bi bi-caret-right-fill"
+        style="font-size: 1.5rem; color: #002a71"
+      ></i
+      >{{totalMonthlySavings}}
+    </p>
     <table
       class="table table-striped-columns table-info table-hover table-bordered"
     >

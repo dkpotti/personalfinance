@@ -24,4 +24,5 @@ urlpatterns = [
     path("moneymanager/", include("moneymanager.urls")),
     path("expensetracker/", include("expensetracker.urls")),
     path("investmentmanager/", include("investmentmanager.urls")),
+    path("liabilitiesmanager/", include("liabilitiesmanager.urls")),
 ]

@@ -1,0 +1,64 @@
+{% extends 'website-master.html' %} {% block content %}
+<br />
+<form
+  class="row g-3"
+  action="{% url 'editliability' edited_object.id %}"
+  method="POST"
+>
+  {% csrf_token %}
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Liability Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputEmail4"
+      name="liabilityName"
+      value="{{edited_object.liabilityName}}"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputAddress" class="form-label">Liability Amount</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="Enter Amount"
+      name="liabilityAmount"
+      value="{{edited_object.liabilityAmount}}"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputAddress" class="form-label">Liability To</label>
+    <input
+      type="text"
+      class="form-control"
+      id="inputAddress"
+      placeholder="Enter Name to whom you have to pay"
+      name="liabilityTo"
+      value="{{edited_object.liabilityTo}}"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Liability Planned End Date</label>
+    <input
+      type="date"
+      class="form-control"
+      id="inputCity"
+      name="liabilityDate"
+      value="{{edited_object.liabilityDate}}"
+    />
+  </div>
+  
+    <div class="col-md-6 form-check form-switch">
+      <input type="checkbox" class="btn-check" id="btn-check-2-outlined" name="liabilityStatus"
+      {% if edited_object.liabilityStatus == True %} checked {% endif %}
+      autocomplete="off" />
+      <label class="btn btn-outline-danger" for="btn-check-2-outlined" >Liability Cleared </label>
+    </div>
+  
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Enter Liability</button>
+  </div>
+</form>
+<br />
+{% endblock %}
