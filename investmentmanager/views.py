@@ -18,10 +18,12 @@ def viewinvestment(request):
         forex_url = f'https://v6.exchangerate-api.com/v6/beeb6efe4b832b73f5f8911e/pair/{eachInvestment.investmentCurrency}/USD/{eachInvestment.investmentAmount}'
         response = requests.get(forex_url)
         forex_data = response.json()
-        totalMonthlyInvestment = totalMonthlyInvestment + Decimal(forex_data["conversion_result"])
+        totalMonthlyInvestment = totalMonthlyInvestment + \
+            Decimal(forex_data["conversion_result"])
         conversion_rate = Decimal(forex_data["conversion_result"])
         conversion_rate = format(conversion_rate, ".2f")
         eachInvestment.investmentConverted = conversion_rate
+        eachInvestment.save()
 
     # totalMonthlyInvestment = allmonthlyinvestments.objects.aggregate(
     #     Sum('investmentConverted'))['investmentConverted__sum']

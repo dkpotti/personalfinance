@@ -13,7 +13,7 @@
         </p>
         <p class="fw-medium">
           Total Expense for the Month:-
-          <i class="bi bi-currency-dollar"></i>{{totalexpense}}
+          <i class="bi bi-currency-dollar"></i>{{totalexpense|floatformat:2}}
         </p>
         <a href="{% url 'viewexpense' %}" class="btn btn-primary"
           >View Detailed</a
@@ -33,7 +33,7 @@
         </p>
         <p class="fw-medium">
           Total Income for the Month:-
-          <i class="bi bi-currency-dollar"></i>{{totalincome}}
+          <i class="bi bi-currency-dollar"></i>{{totalincome|floatformat:2}}
         </p>
         <a href="{% url 'viewexpense' %}" class="btn btn-primary"
           >View Detailed</a
@@ -53,7 +53,7 @@
         </p>
         <p class="fw-medium">
           Total Savings:-
-          <i class="bi bi-currency-dollar"></i>{{totalcashinvested}}
+          <i class="bi bi-currency-dollar"></i>{{totalcashinvested|floatformat:2}} -- {{totalInvestments|floatformat:2}} -- {{totalMonthlySavings|floatformat:2}}
         </p>
         <a href="{% url 'viewmoney' %}" class="btn btn-primary"
           >View Detailed</a
@@ -65,10 +65,53 @@
   <div class="row">
     <div class="col-sm-6 mb-3 mb-sm-0 mt-3">
       <span class="card-text badge bg-warning text-body-secondary fs-5"
-        >Money left to spend or save:- {{moneyleft}}</span
+        >Money left to spend or save:- {{moneyleft|floatformat:2}}</span
       >
     </div>
   </div>
+  <div class="row col-sm-10 mb-3 mb-sm-0 mt-3">
+    <div class="card bg-secondary-subtle">
+      <p class="card-title fs-4 fw-medium mt-2">Total Monthly Summary</p>
+      <div class="card-body fs-5">
+        <ul class="list-group list-group-item-secondary">
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center fw-medium"
+          >
+            How much you spent of your salary
+            <span class="badge bg-primary rounded-pill"
+              >{{expensePercentage|floatformat:2}}%</span
+            >
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center fw-medium"
+          >
+            How much of salary you save
+            <span class="badge bg-primary rounded-pill"
+              >{{savingsPercentage|floatformat:2}}%</span
+            >
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center fw-medium"
+          >
+            How much of the salary you invest
+            <span class="badge bg-primary rounded-pill"
+              >{{investmentPercentage|floatformat:2}}%</span
+            >
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between align-items-center fw-medium"
+          >
+            How much of the salary left
+            <span class="badge bg-primary rounded-pill"
+              >{{leftOverPercentage|floatformat:2}}%</span
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </div>
+  
 </div>
 <br />
 {% endblock %}

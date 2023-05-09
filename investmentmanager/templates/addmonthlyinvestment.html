@@ -3,21 +3,22 @@
 <form class="row g-3" action="{% url 'addmonthlyinvestment' %}" method="POST">
   {% csrf_token %}
   <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Income Name</label>
+    <label for="inputEmail4" class="form-label">Investment Name</label>
     <input
       type="text"
       class="form-control"
       id="inputEmail4"
+      placeholder="Enter the Name of the investment"
       name="investmentName"
     />
   </div>
   <div class="col-md-6">
-    <label for="inputAddress" class="form-label">Income Amount</label>
+    <label for="inputAddress" class="form-label">Investment Amount</label>
     <input
       type="text"
       class="form-control"
       id="inputAddress"
-      placeholder="Enter Amount"
+      placeholder="Enter Amount you invested"
       name="investmentAmount"
       value=""
     />
@@ -38,7 +39,7 @@
       type="text"
       class="form-control"
       id="inputAddress"
-      placeholder="Enter Currency in three letter format"
+      placeholder="Please enter 0 in case you don't want to convert yourself"
       name="investmentConverted"
     />
   </div>
@@ -48,11 +49,12 @@
       type="date"
       class="form-control"
       id="inputCity"
+      placeholder="When you started investment"
       name="investmentDate"
     />
   </div>
   <div class="col-12">
-    <button type="submit" class="btn btn-primary">Enter Income</button>
+    <button type="submit" class="btn btn-primary">Enter Investment</button>
   </div>
 </form>
 

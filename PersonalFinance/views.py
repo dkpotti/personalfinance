@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from expensetracker.models import *
 from moneymanager.models import *
+from investmentmanager.models import *
+from django.db.models import Sum, Count
 
 
 def homepage(request):
@@ -13,19 +15,30 @@ def homepage(request):
     totalexpense = 0
     totalincome = 0
     totalcashinvested = 0
+    expensePercentage = 0
+    savingsPercentage = 0
+    leftOverPercentage = 0
+    investmentPercentage = 0
 
-    for eachExpense in allregularmonthlyexpense:
-        totalexpense = eachExpense.expenseAmount + totalexpense
+    totalincome = regularmonthlyincome.objects.aggregate(
+        Sum('incomeAmount'))['incomeAmount__sum']
+    totalexpense = regularmonthlyexpense.objects.aggregate(
+        Sum('expenseAmount'))['expenseAmount__sum']
+    totalMonthlySavings = regularmonthlysavings.objects.all().aggregate(
+        Sum('savingsAmount'))['savingsAmount__sum']
+    totalcashinvested = moneymanager.objects.aggregate(
+        Sum('cashAmount'))['cashAmount__sum']
+    totalInvestments = monthlyinvestment.objects.aggregate(
+        Sum('investmentConverted'))['investmentConverted__sum']
 
-    for eachExpense in allunexpectedmonthlyexpense:
-        totalexpense = eachExpense.expenseAmount + totalexpense
+    moneyleft = totalincome - \
+        (totalexpense + totalInvestments + totalMonthlySavings)
 
-    for eachExpense in allregularmonthlyincome:
-        totalincome = eachExpense.incomeAmount + totalincome
+    expensePercentage = (totalexpense / totalincome) * 100
+    savingsPercentage = (totalMonthlySavings / totalincome) * 100
+    leftOverPercentage = (moneyleft / totalincome) * 100
+    investmentPercentage = (totalInvestments / totalincome) * 100
 
-    for eachCashItem in allmoneyitems:
-        totalcashinvested = totalcashinvested + eachCashItem.cashAmount
-
-    moneyleft = totalincome - totalexpense
-
-    return render(request, "index.html", {"totalexpense": totalexpense, "totalincome": totalincome, "moneyleft": moneyleft, "totalcashinvested": totalcashinvested})
+    return render(request, "index.html", {"totalexpense": totalexpense, "totalincome": totalincome, "moneyleft": moneyleft, "totalcashinvested": totalcashinvested,
+                                          "totalInvestments": totalInvestments, "totalMonthlySavings": totalMonthlySavings,
+                                          "expensePercentage": expensePercentage, "savingsPercentage": savingsPercentage, "leftOverPercentage": leftOverPercentage, "investmentPercentage": investmentPercentage})
